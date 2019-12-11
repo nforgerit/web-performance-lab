@@ -1,0 +1,45 @@
+version: "3"
+services:
+    orchestrator:
+        build:
+            context: .
+            dockerfile: Dockerfile-orchestrator
+        networks:
+            - backend
+
+    worker:
+        build:
+            context: .
+            dockerfile: Dockerfile-worker
+        ports:
+            - 8080:8080
+        networks:
+            - backend
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /usr/local/bin/docker:/usr/local/bin/docker
+            - ./sitespeedConfig.json:/opt/sitespeedDefaultConfig.json
+
+    graphite:
+        image: graphiteapp/graphite-statsd:1.1.6-1
+        networks:
+            - backend
+        ports:
+            - 8081:80
+            - 2003-2004:2003-2004
+            - 2023-2024:2023-2024
+            - 8125:8125/udp
+            - 8126:8126
+
+    grafana:
+        image: grafana/grafana:6.5.1-ubuntu
+        networks:
+            - backend
+
+    redis:
+        image: redis:5.0.7
+        networks:
+            - backend
+
+networks:
+    backend:

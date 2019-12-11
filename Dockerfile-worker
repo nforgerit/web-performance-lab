@@ -1,0 +1,14 @@
+FROM node:13.2.0 as builder
+
+COPY . /usr/src/app
+
+WORKDIR /usr/src/app
+ENV LIBSASS_EXT no
+RUN npm install
+
+
+FROM node:13.2.0-slim as app
+
+WORKDIR /usr/src/app
+COPY --from=builder /usr/src/app /usr/src/app
+CMD ["node","/usr/src/app/index.js"]

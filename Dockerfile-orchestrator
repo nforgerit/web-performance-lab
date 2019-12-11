@@ -1,0 +1,9 @@
+FROM node:13.2.0 as builder
+
+ADD . /usr/src/app/
+RUN npm install
+
+FROM node:13.2.0-slim as app
+
+COPY --from=builder node_modules .
+CMD ["node","./lib/orchestrator.js"]

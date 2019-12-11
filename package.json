@@ -1,0 +1,32 @@
+{
+  "name": "sitespeed-cluster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "jest",
+    "test:dev": "jest --watch",
+    "lint": "standard lib/**/*.js __tests__/**/*.js"
+  },
+  "author": "Nicolas Forgerit",
+  "license": "ISC",
+  "dependencies": {
+    "acorn": "^7.1.0",
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jest": "^24.9.0",
+    "redis": "^2.8.0",
+    "sitespeed.io": "^11.4.0"
+  },
+  "devDependencies": {
+    "standard": "^14.3.1",
+    "supertest": "^4.0.2"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  }
+}

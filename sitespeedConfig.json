@@ -1,0 +1,6 @@
+{
+    "graphite": {
+      "host": "graphite",
+      "namespace": "sitespeed_io.desktopFirstView"
+    }
+}
