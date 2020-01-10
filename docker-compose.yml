@@ -6,19 +6,23 @@ services:
             dockerfile: Dockerfile-orchestrator
         networks:
             - backend
+        ports:
+            - 8080:8080
+        environment:
+            - 'MODE=master'
+            - 'REDIS_URL=redis://redis'
+            - 'WORKER=http://worker:8080/jobs'
 
     worker:
         build:
             context: .
             dockerfile: Dockerfile-worker
-        ports:
-            - 8080:8080
         networks:
             - backend
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - /usr/local/bin/docker:/usr/local/bin/docker
-            - ./sitespeedConfig.json:/opt/sitespeedDefaultConfig.json
+            - ./lib/sitespeedConfig.json:/opt/sitespeedDefaultConfig.json
 
     graphite:
         image: graphiteapp/graphite-statsd:1.1.6-1
@@ -33,6 +37,8 @@ services:
 
     grafana:
         image: grafana/grafana:6.5.1-ubuntu
+        ports:
+            - 3000:3000
         networks:
             - backend
 

@@ -1,9 +1,16 @@
 FROM node:13.2.0 as builder
 
-ADD . /usr/src/app/
+COPY . /usr/src/app
+
+WORKDIR /usr/src/app
+ENV LIBSASS_EXT no
 RUN npm install
+
 
 FROM node:13.2.0-slim as app
 
-COPY --from=builder node_modules .
-CMD ["node","./lib/orchestrator.js"]
+WORKDIR /usr/src/app
+COPY --from=builder /usr/src/app /usr/src/app
+EXPOSE 8080
+
+CMD ["node","/usr/src/app/index.js"]

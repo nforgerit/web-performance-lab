@@ -3,10 +3,10 @@
 ## Features
 - Dynamically change URLs
 - Easy addition of Worker Nodes
-- Run Experiments by Configuration (MeasurementInterval mi, Browser b, Connectivity c) -> Metrics
+- Run Experiments by Configuration (SchedulerConfig sc, Browser b, Connectivity c) -> Metrics
 - Network Throttling per Experiment
 - Robust Job Queue implementation
-- Various Experiment Scheduling (Interval, OneTime, NTimes)
+- Various Experiment SchedulerConfig (Interval, OneTime, NTimes)
 
 ## Roadmap
 - Graphite/Grafana setup
