@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "jest": "^24.9.0",
     "node-cron": "^2.0.3",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "sitespeed.io": "^11.4.0"
   },
   "devDependencies": {
